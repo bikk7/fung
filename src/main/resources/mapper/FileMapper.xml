@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射文件要与相对应的mapper接口通过namespace属性进行关联-->
+<mapper namespace="com.example.zj.dao.FileDao">
+
+    <!--id为mapper类中对应方法名，resultType为定义的接收类型，一般为对应实体类-->
+    <select id="getFile" parameterType="String" resultType="file">
+        select * from file where p_id=#{p_id}
+    </select>
+
+    <select id="getFileAll" resultType="file">
+        select * from file
+    </select>
+
+    <insert id="insertFileMessage" parameterType="file" >
+        insert into file(p_id,f_id,collect_d_id,state,collect_time,collect_site,lung_file,lung_description,lung_type,spectrum_image,ct_image,ct_description)
+        VALUES(#{p_id},#{f_id},#{collect_d_id},#{state},#{collect_time},#{collect_site},#{lung_file},#{lung_description},#{lung_type},#{spectrum_image},#{ct_image},#{ct_description})
+    </insert>
+
+
+
+
+
+
+
+
+</mapper>

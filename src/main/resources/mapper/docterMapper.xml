@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射文件要与相对应的mapper接口通过namespace属性进行关联-->
+<mapper namespace="com.example.zj.dao.DocterDao">
+
+    <!--id为mapper类中对应方法名，resultType为定义的接收类型，一般为对应实体类-->
+    <select id="enter" parameterType="doctor" resultType="boolean">
+        select count(d_id) from doctor where d_id=#{d_id} and d_Password = #{d_Password};
+    </select>
+
+    <select id="getPatientMessage"  parameterType="String" resultMap="DocterWithPatientResult">
+        select p_id,p_name,p_sex,p_age,d_institution,d_name from patient,doctor where doctor.d_id=#{doctor.d_id} and patient.d_id=doctor.d_id;
+    </select>
+    <resultMap id="DocterWithPatientResult" type="doctor">
+        <id property="d_id" column="d_id"/>
+        <result property="d_Password" column="d_Password"/>
+        <result property="d_name" column="d_name"/>
+        <result property="d_institution" column="d_institution"/>
+        <collection property="patientList" ofType="patient">
+            <id property="p_id" column="p_id"/>
+            <result property="p_name" column="p_name"/>
+            <result property="p_sex" column="p_sex"/>
+            <result property="p_age" column="p_age"/>
+            <result property="p_diag" column="p_diag"/>
+            <result property="p_Password" column="p_Password"/>
+            <result property="d_id" column="d_id"/>
+            <result property="p_hospNum" column="p_hospNum"/>
+            <result property="p_collectSite" column="p_collectSite"/>
+            <result property="p_collectTime" column="p_collectTime"/>
+            <result property="p_lungDescription" column="p_lungDescription"/>
+            <result property="p_ctDescription" column="p_ctDescription"/>
+        </collection>
+    </resultMap>
+
+
+</mapper>

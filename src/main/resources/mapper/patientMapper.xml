@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--映射文件要与相对应的mapper接口通过namespace属性进行关联-->
+<mapper namespace="com.example.zj.dao.PatientDao">
+
+    <!--id为mapper类中对应方法名，resultType为定义的接收类型，一般为对应实体类-->
+    <select id="getPatient" parameterType="String" resultType="patient">
+    select * from patient where p_id=#{p_id};
+    </select>
+    <resultMap id="PatientWithFileResult" type="patient">
+        <id property="p_id" column="p_id"/>
+        <result property="p_Password" column="p_Password"/>
+        <result property="p_name" column="p_name"/>
+        <result property="p_age" column="p_age"/>
+        <result property="p_sex" column="p_sex"/>
+        <result property="p_diag" column="p_diag"/>
+        <result property="d_id" column="d_id"/>
+        <collection property="fileList" ofType="file">
+            <id property="f_id" column="f_id"/>
+            <result property="f_url" column="f_url"/>
+            <result property="f_date" column="f_date"/>
+            <result property="state" column="state"/>
+        </collection>
+    </resultMap>
+
+
+
+</mapper>
