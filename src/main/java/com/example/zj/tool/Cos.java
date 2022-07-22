@@ -20,11 +20,7 @@ import java.util.Map;
 
 public class Cos {
 
-   static String secretId = "AKID67sPghE9VbZIlyve8ML8h03rVu489M9l";
-   static String secretKey = "av0qQq1wb1C7mCQQBk49yYt2vYw5zd2B";
-   static String bucketName= "lung-1256503211";
-   static String region="ap-guangzhou";
-   public static String web="https://lung-1256503211.cos.ap-guangzhou.myqcloud.com/";
+   
     // 将本地文件上传到COS
     public static void SimpleUploadFileFromLocal(com.example.zj.pojo.File file, String lung_file,String path_lung_file,String spectrum_file,String path_spectrum_file,String ct_file,String path_ct_file,FileService fileService) {
         // 1 初始化用户身份信息(secretId, secretKey)
